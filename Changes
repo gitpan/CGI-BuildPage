@@ -1,0 +1,84 @@
+
+0.053 Fri Mar 20 08:58:42 MET 1998 adelton
+
+	Add_left pridava pro fi/wide <B>, </B>.
+
+0.052 Mon Feb 16 12:21:10 MET 1998 adelton
+
+	FONT COLOR do OPTS pro fi/wide.	
+
+0.051 Tue Feb 10 22:55:38 MET 1998 adelton
+
+	Vycisteny testy, aby odpovidaly novemu CGI (verze 2.37024),
+	hlavicka Content-Type. Inicializace .header presunuta dopredu,
+	aby i pri chybe byla hlavicka vytistena.
+
+0.05 adelton
+
+	Pridano madd, madd_left, madd_both.
+
+0.04 adelton
+
+	Ostranena chyba s dedicnosti vuci CGI -- vyreseno asi nehezky
+	pres zpozdeny eval.
+
+0.0313 adelton
+
+	FATAL_* zruseno, misto toho je REPORT, ktere jednak vypise
+	chybove HTML, zavola log_error, chybovy zapis do logu,
+	a taky zavola Fadmin::REPORT, cili posle mail a skonci.
+
+	Pridano check_valid_string an testovani retezce,
+	check_input_params, ktere se defaultne vola na kod a semestr
+	pri startu, ale je mozno zavolat znova a jako parametr dat
+	dalsi parametry, ktere chceme otestovat.
+
+0.0312 adelton
+
+	Pridana moznost new CGI::FI('no_log').
+	pridano FATAL_EMAILS, FATAL_ROOTS, ale mozna jen docasne.
+	Prodana uprava titulku. Pridan priklad na no_log v new do
+	dokumentace.
+
+0.0310 adelton
+
+	Opravena chyba v add_no_lf
+
+0.0309 Thu Nov 20 19:29:48 MET 1997
+
+	Konverze vstupniho kodovani.
+
+0.0308 Wed Nov 19 17:01:15 MET 1997 adelton
+
+	Opraveno logovani \n na <NL>. Medved opravil head (expires)
+	a add_left.
+
+0.0307 Mon Nov 17 11:31:14 MET 1997 adelton
+
+	Pridana metoda expires.
+
+0.0306 Mon Nov 17 11:01:49 MET 1997 adelton
+
+	Opraveno (zmeneno) chovani add_left, pridano add*_no_lf.
+	Pridana metoda print_header.
+
+0.0304 Sun Nov 16 12:13:19 MET 1997 adelton
+
+	Opraveno: allow_cache (v print_out);
+	wide format (v print out, WIDTH=140)
+
+31.10.1997 michael@fi.muni.cz
+
+	fce add_icon, icons
+	dokumentace :-)
+	zmena na verzi 0.03-2
+
+30.10.1997 michael@fi.muni.cz
+
+	fce serial, serial_collision
+
+
+21.10.1997  michael@fi.muni.cz
+
+	funkce add_both, get_option, hr, sign
+

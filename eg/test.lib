@@ -1,0 +1,64 @@
+
+
+my $DO_NOT_UNLINK = 0;
+
+#
+# This is a library for testing output of scripts.
+#
+
+$| = 1;
+
+my $comparetest = 1;
+if (defined $ARGV[0] and $ARGV[0] eq '-v')
+	{ shift @ARGV; $comparetest = 0; return 1; }
+
+my $dir = ( -d 't' ? 't' : '.' );
+
+my $scriptfile = $0;
+my $testfile;
+
+if ($comparetest)
+	{
+	my $name = $scriptfile;
+	$name =~ s!^.*/|\.t$!!g;
+	$testfile = "/tmp/make.test.result.$name.$$";
+	unlink $testfile if -f $testfile;
+
+	print "Running test suite for $0\n";
+	print "1..1\n";
+
+	open OUT, "> $testfile";
+	select OUT;
+	}
+
+END
+	{
+	return unless $comparetest;
+
+	close OUT;
+	select STDOUT;
+
+	my $goodfile = $scriptfile;
+	$goodfile =~ s/\.t$/.out/;
+
+	local $/ = undef;
+
+	open FILE, $goodfile or die "Error reading $goodfile: $!\n";
+	my $good = <FILE>;
+	close FILE;
+
+	open FILE, $testfile or die "Error reading $testfile: $!\n";
+	my $out = <FILE>;
+	close FILE;
+
+	if (not defined $out or not defined $good or $out ne $good)
+		{
+		print "The files '$goodfile' and '$testfile' differ:\n";
+		system "diff", $goodfile, $testfile;
+		print "not ";
+		}
+	print "ok 1\n";
+
+	unlink $testfile if -f $testfile and not $DO_NOT_UNLINK;
+	}
+
